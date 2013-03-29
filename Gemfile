@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'mysql2', '~> 0.3.11'
-
+gem 'devise'
 gem 'jquery-rails', '~> 2.2.1'
 gem 'haml-rails', '~> 0.4'
 
@@ -14,6 +14,7 @@ end
 # Testing etc
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'shoulda-matchers'
 end
 
 group :test do
