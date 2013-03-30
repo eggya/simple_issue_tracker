@@ -1,7 +1,7 @@
 SimpleIssueTracker::Application.routes.draw do
 
   resources :tickets, :only => [:new,:create]
-  match '/:token' => 'tickets#show_my_ticket', :as => :show_my_ticket
+  match '/show_my_page/:token' => 'tickets#show_my_ticket', :as => :show_my_ticket
 
   devise_for :admins
 
