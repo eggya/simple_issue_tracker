@@ -8,6 +8,7 @@ describe Admin do
   end
 
   describe "Associations" do
+    it { should have_many :tickets }
   end
 
   describe "Methods" do

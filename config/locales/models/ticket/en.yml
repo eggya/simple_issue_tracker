@@ -1,0 +1,6 @@
+en:
+  helpers:
+    label:
+      admin:
+        log_creation: "%{name} reported an issue."
+        log_update: "%{name} updated status into %{status}"

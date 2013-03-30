@@ -1,0 +1,23 @@
+en:
+  views:
+    admin:
+      tickets:
+        index:
+          title: Listing Tickets
+          header:
+            name: name
+            email: email
+            reference_number: ref.
+            status: status
+            action: action
+            edit: follow up
+          link:
+            new: Unassigned tickets
+            open: Open tickets
+            hold: On hold
+            closed: Closed
+          blank_result: "No result for your query."
+        show:
+          reporter: "Reporter : %{name} - %{email}"
+          status: "Status : "
+          staff: "Staff in charge : "

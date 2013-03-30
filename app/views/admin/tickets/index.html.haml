@@ -1,0 +1,35 @@
+%h1= t("views.admin.tickets.index.title")
+
+#nav
+  .left
+    = link_to t("views.admin.tickets.index.link.new"), admin_tickets_path(:listing_id => 1)
+    = link_to t("views.admin.tickets.index.link.open"),admin_tickets_path(:listing_id => 2)
+    = link_to t("views.admin.tickets.index.link.hold"), admin_tickets_path(:listing_id => 3)
+    = link_to t("views.admin.tickets.index.link.closed"), admin_tickets_path(:listing_id => 4)
+  .right
+    = form_tag admin_tickets_path, :method => 'get' do
+      = text_field_tag :keyword, params[:keyword]
+      = submit_tag t("search"), :name => nil
+
+%br
+
+- unless @tickets.empty?
+  %table
+    %tr
+      %th= t("views.admin.tickets.index.header.name")
+      %th= t("views.admin.tickets.index.header.email")
+      %th= t("views.admin.tickets.index.header.status")
+      %th= t("views.admin.tickets.index.header.reference_number")
+      %th= t("views.admin.tickets.index.header.action")
+
+    - @tickets.each do |ticket|
+      %tr
+        %td= ticket.name
+        %td= ticket.email
+        %td= ticket.status
+        %td= ticket.reference_number# 
+        %td= link_to t("views.admin.tickets.index.header.edit"), admin_ticket_path(ticket)
+- else
+  = t("views.admin.tickets.index.blank_result")
+
+%br

@@ -7,6 +7,12 @@
     = csrf_meta_tags
   %body
 
+    - if signed_in?
+      %header
+        .right
+          = link_to current_admin.name, admin_root_path
+          = link_to t(".links.sign_out"), destroy_admin_session_path, :method => :delete
+
     %p#notice= notice unless flash.notice.blank?
     %p#alert= alert unless flash.alert.blank?
 

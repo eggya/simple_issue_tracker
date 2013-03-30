@@ -9,4 +9,19 @@ def seeding_admin
   end
 end
 
+def seeding_tickets_status
+  statuses = [
+    "Waiting for Staff Response", 
+    "Waiting for Customer",
+    "On Hold", 
+    "Cancelled", 
+    "Completed"
+  ]
+
+  statuses.each do |status|
+    TicketStatus.create( :description => status )
+  end
+end
+
 seeding_admin
+seeding_tickets_status

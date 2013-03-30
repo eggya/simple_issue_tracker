@@ -1,0 +1,14 @@
+en:
+  system_mailer:
+    new_issue_posted:
+      information:
+        greeting: "Hi %{name},"
+        reported: "The reported issue is registered with this reference number %{ref}"
+        check: "You can check the progress by following this %{link}"
+        signature: "Thank you for submitting."
+    new_updates_posted:
+      information:
+        greeting: "Hi %{name},"
+        reported: "The reported registered with this reference number %{ref} has been updated recently."
+        check: "Track the progress by following this %{link}"
+        signature: "Thank you for submitting."
