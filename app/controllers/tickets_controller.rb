@@ -22,6 +22,7 @@ class TicketsController < ApplicationController
   def show_my_ticket
     @ticket = Ticket.find_by_token(params[:token])
     @histories = @ticket.ticket_histories
+    @comment = Comment.new
 
     render "/admin/tickets/show"
   end

@@ -10,6 +10,7 @@ class Admin::TicketsController < Admin::BaseController
 
   def show
     @histories = @ticket.ticket_histories
+    @comment   = Comment.new
     respond_with @ticket
   end
 

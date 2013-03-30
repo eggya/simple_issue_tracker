@@ -14,4 +14,11 @@ class SystemMailer < ActionMailer::Base
     
     mail(:to => @ticket.email, :subject => I18n.t(".new_updates_posted.subject"))
   end
+
+  def new_message_posted ticket
+    @ticket = ticket
+    @link = show_my_ticket_url(ticket.token)
+    
+    mail(:to => @ticket.email, :subject => I18n.t(".new_message_posted.subject"))
+  end
 end

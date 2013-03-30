@@ -21,3 +21,6 @@ en:
           reporter: "Reporter : %{name} - %{email}"
           status: "Status : "
           staff: "Staff in charge : "
+          histories: histories
+          settings: settings
+          comments: comments

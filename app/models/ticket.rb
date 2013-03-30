@@ -3,6 +3,8 @@ class Ticket < ActiveRecord::Base
   validates_presence_of :name, :email, :subject
 
   has_many :ticket_histories
+  has_many :comments
+
   belongs_to :ticket_status
   belongs_to :admin
 

@@ -8,6 +8,7 @@ SimpleIssueTracker::Application.routes.draw do
   namespace :admin do
     resources :ticket_statuses
     resources :ticket_histories
+    resources :comments
 
     resources :tickets, :except => [:new,:create,:destroy] do
       member do

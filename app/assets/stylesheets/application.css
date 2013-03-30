@@ -9,8 +9,13 @@ header, #nav, #staff {
 }
 
 header { height: 50px;}
+fieldset { border: 1px solid grey;}
 
 #nav, #staff   { margin-bottom: 50px;}
 
 .left { float: left;}
 .right { float: right;}
+
+.comments div, .histories div { border: 1px solid whitesmoke; }
+.comments span, .histories span { color: grey;}
+.comments div, .histories div, .settings, .subject, div textarea {margin: 10px; padding: 10px;}

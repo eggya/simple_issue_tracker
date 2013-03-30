@@ -3,38 +3,62 @@
 %fieldset
   %legend
     %h1= @ticket.reference_number
-  = @ticket.subject
+  .subject
+    = @ticket.subject
 
-.reporter
-  = t("views.admin.tickets.show.reporter", :name => @ticket.name, :email => @ticket.email)
-.status  
-  .left
-    = t("views.admin.tickets.show.status")
-  .left
-    - if signed_in?
-      = form_tag update_status_admin_ticket_path(@ticket), :method => 'put' do
-        = select_tag :ticket_status_id, options_for_select(TicketStatus.all.collect{|p| [p.description,p.id]}, @ticket.ticket_status_id)
-        = submit_tag t("submit"), :name => nil
-    - else
-      = @ticket.status
-#staff
-  .left
-    = t("views.admin.tickets.show.staff")
-  .left
-    - if signed_in?
-      = form_tag update_admin_admin_ticket_path(@ticket), :method => 'put' do
-        = select_tag :admin_id, options_for_select(Admin.all.collect{|p| [p.name,p.id]}, @ticket.admin_id), {:prompt => t("please_select")}
-        = submit_tag t("submit"), :name => nil
-    - else
-      = @ticket.admin.try(:name).nil? ? t('nobody') : @ticket.admin.try(:name)
+%fieldset
+  %legend
+    %h3= t("views.admin.tickets.show.settings")
+  .reporter
+    = t("views.admin.tickets.show.reporter", :name => @ticket.name, :email => @ticket.email)
+  .status  
+    .left
+      = t("views.admin.tickets.show.status")
+    .left
+      - if signed_in?
+        = form_tag update_status_admin_ticket_path(@ticket), :method => 'put' do
+          = select_tag :ticket_status_id, options_for_select(TicketStatus.all.collect{|p| [p.description,p.id]}, @ticket.ticket_status_id)
+          = submit_tag t("submit"), :name => nil
+      - else
+        = @ticket.status
+  #staff
+    .left
+      = t("views.admin.tickets.show.staff")
+    .left
+      - if signed_in?
+        = form_tag update_admin_admin_ticket_path(@ticket), :method => 'put' do
+          = select_tag :admin_id, options_for_select(Admin.all.collect{|p| [p.name,p.id]}, @ticket.admin_id), {:prompt => t("please_select")}
+          = submit_tag t("submit"), :name => nil
+      - else
+        = @ticket.admin.try(:name).nil? ? t('nobody') : @ticket.admin.try(:name)
 
-%p#notice= notice
+%fieldset
+  %legend
+    %h3= t("views.admin.tickets.show.histories")
+  .histories
+    - unless @histories.nil?
+      - @histories.each do |history|
+        %div
+          = history.activity
+          %span
+            = history.created_at.strftime("%d %B %Y")
 
-.histories
-  - unless @histories.nil?
-    - @histories.each do |history|
-      %div
-        = history.activity
-        = history.created_at.strftime("%d %B %Y")
+%fieldset
+  %legend
+    %h3= t("views.admin.tickets.show.comments")
+  .comments
+    - unless @ticket.comments.empty?
+      - @ticket.comments.each do |comment|
+        %div
+          = comment.body
+          %span
+            = comment.created_at.strftime("%d %B %Y")
+            = comment.admin.nil? ? @ticket.name : comment.admin.name
+
+  %div
+    = form_for [:admin, @comment], :method => 'post' do |f|
+      = f.text_area :body
+      = f.hidden_field :ticket_id, :value => @ticket.id
+      = submit_tag t("submit"), :name => nil
 
 = link_to 'Back', admin_tickets_path if signed_in?

@@ -1,0 +1,5 @@
+en:
+  comments:
+    create:
+      information: 
+        success: Ticket was successfully created.
