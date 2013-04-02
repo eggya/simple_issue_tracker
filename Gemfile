@@ -9,6 +9,7 @@ gem 'haml-rails', '~> 0.4'
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
+  gem "twitter-bootstrap-rails"
 end
 
 # Testing etc

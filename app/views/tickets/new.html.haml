@@ -1,2 +1,4 @@
-%h1 New ticket
-= render 'form'
+- model_class = Ticket
+.page-header
+  %h3=t 'helpers.titles.tickets.new', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human
+= render :partial => "form"

@@ -1,4 +1,5 @@
-= form_for @ticket do |f|
+= form_for @ticket, :html => { :class => 'form-horizontal' } do |f|
+
   - if @ticket.errors.any?
     #error_explanation
       %h2= "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
@@ -6,15 +7,18 @@
         - @ticket.errors.full_messages.each do |msg|
           %li= msg
 
-  %div
-    = f.label :name
-    = f.text_field :name
-  %div
-    = f.label :email
-    = f.email_field :email
-  %div
-    = f.label :subject
-    = f.text_area :subject
-
-  .actions
-    = f.submit t('submit')
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :email, :class => 'control-label'
+    .controls
+      = f.text_field :email, :class => 'text_field'
+  .control-group
+    = f.label :subject, :class => 'control-label'
+    .controls
+      = f.text_area :subject, :class => 'text_area'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'
